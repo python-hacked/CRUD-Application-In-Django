@@ -1,0 +1,88 @@
+{% extends "id/base.html" %}
+ {% block content %}
+
+    <div class="regform"><h1> Update form</h1> </div>
+    <div class="main">
+        <form method="POST" action="/update_form_data/">
+
+
+        <div id="name">
+            <h2 class="name">Name</h2>
+            <input class="firstname" type="text" name="first_name" value="{{person.first_name}}"><br>
+            <label class="firstlable">first name</label>
+            <input class="lastname" type="text" name="last_name" value="{{person.last_name}}"><br>
+            <label class="lastlable">last name</label>
+        <div>
+         {% csrf_token %}
+         <input type="hidden" name="uid" value="{{person.id}}">
+                <h2 class="name">Company</h2>
+                <input class="company" type="text" name="company" value="{{person.Company_name}}"><br>
+
+                
+                <h2 class="name">Email</h2>
+                <input class="Email" type="text" name="Email" value="{{person.Email_name}}"><br>
+                
+                <h2 class="name"> Phone</h2>
+                <input class="code" type="text" name="area_coda">
+                <label class="area-code"> Area code</label>
+                <input class="number" type="text" type="text" name="Phone" value="{{person.Phone_number}}">
+                <label class="Phone-number" ><br>
+
+
+                
+
+                <!-- </selact> -->
+                 {% comment %} <h2 class="name"> Subject </h2>
+                 <select class="option" name="subject" id="select">
+                 <option value="">-- choose option--</option>
+                 <option value="subject 1">subject 1</option>
+                 <option value="subject 2">subject 2</option>
+                 <option value="subject 3">subject 3</option> {% endcomment %}
+                 
+                 {% comment %} </select>
+                 <h2 class="name">Password</h2>
+                <input class="company" type="password" name="Password"> {% endcomment %}
+
+
+                
+                {% comment %} <h2 class="student"> Are you Beginner ?</h2> {% endcomment %}
+
+
+                <!-- <lable class="radio">
+                <input class="radio-one" type="radio" checked="checked" name="yes">
+                <span class="checkmark"></span>
+                yes
+                </lable>
+
+
+                <lable class="radio">
+                <input class="radio-two" type="radio" name="no">
+                <span class="checkmark"></span>
+                no
+                </lable> -->
+                
+                {% comment %} <label class="radio">
+                    <input type="radio" name="choice-radio">
+                    Yes
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="choice-radio">
+                    No
+                  </label> {% endcomment %}
+
+                
+
+
+                <button type="submit">Save</button>
+        </div>
+              </div>
+         </form>
+  </div>
+            </body>
+        </html>
+
+                {% endblock %}
+
+            
+ 
+ 

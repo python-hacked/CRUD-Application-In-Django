@@ -1,0 +1,31 @@
+{%extends "id/base.html" %}
+ {% block content %}
+    <div class="regform"><h1> Registration form</h1> </div>
+    <div class="main">
+        <form method="POST" action="/login_data/">
+
+
+        <div id="name">
+            <h2 class="name">Name</h2>
+            <input class="firstname" type="tel" maxlength="10" name="Phone"><br>
+            <label class="firstlable">Phone number</label>
+            <input class="lastname" type="password" name="Password">
+            <label class="lastlable">Password </label>
+        <div>
+         {% csrf_token %}
+                
+                
+                
+
+
+                <button type="submit">Login</button>
+                <button><a href="{% url 'home' %}" class="text-danger">Newuser</a></button</div>
+              </div>
+         </form>
+  </div>
+           {% endblock %}
+
+
+            
+ 
+ 

@@ -1,0 +1,194 @@
+
+    *{
+     margin: 0;
+     padding: 0;   
+      }
+     body{
+         background-image: url("http://127.0.0.1:8000/static/img/img23.jpg");
+         background-position: center;
+         background-size: cover;
+         font-family: sans-serif;
+         margin-top: 40px;
+             }
+     .regform{
+                width: 800px;
+                background-color: rgb(0, 0, 0, 0, 6);
+                margin: auto;
+                color: #ffffff;
+                padding: 10px 0px 10px 0px;
+                text-align: center;
+                border-radius: 15px 15px 0px 0px;
+               } 
+     .main{
+           background-color: rgb(0, 0, 0, 0, 0, 5);
+           width: 800px;
+           margin: auto;
+           }
+
+      form{
+           padding: 10px;
+     }  
+     #name{
+           width: 100%;
+           height: 100px;
+           }
+     .name{
+           margin-left: 25px;
+           margin-top: 30px;
+           width: 125px;
+           color: white;
+           font-size: 25px;
+           font-weight: 700;
+           }          
+    .firstname{
+               position: relative;
+               left: 200px;
+               top: -37px;
+               line-height: 40px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+              }
+     .lastname{
+               position: relative;
+               left: 417px;
+               top: -80px;
+               line-height: 40px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+               color: #555;
+             }  
+     .firstlable{
+               position: relative;
+               color: #E5E5E5;
+               text-transform: capitalize;
+               font-size: 14px;
+               left: 203px;
+               top: -45px;
+             }  
+     .lastlable{
+               position: relative;
+               color: #E5E5E5;
+               text-transform: capitalize;
+               font-size: 14px;
+               left: 218px;
+               top: -47px;
+               }   
+      .company{
+               position: relative;
+               left: 200px;
+               top: -37px;
+               line-height: 40px;
+               width: 532px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+               color: #555;
+              }     
+       .Email{
+               position: relative;
+               left: 200px;
+               top: -37px;
+               line-height: 40px;
+               width: 532px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+               color: #555;
+              
+              }   
+       .code{
+               position: relative;
+               left: 200px;
+               top: -37px;
+               line-height: 40px;
+               width: 95px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+               color: #555;
+             }                   
+      .number{
+               position: relative;
+               left: 200px;
+               top: -37px;
+               line-height: 40px;
+               width: 255px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+               color: #555;
+              }
+      .area-code{
+                 position: relative;
+                 color: #E5E5E5;
+                 text-transform: capitalize;
+                 font-size: 16px;
+                 left: 97px;
+                 top: -4px;
+                }  
+      .phone-number{
+                 position: relative;
+                 color: #E5E5E5;
+                 text-transform: capitalize;
+                 font-size: 16px;
+                 left: -57px;
+                 top: -2px;
+                }  
+       .option{ 
+               position: relative;
+               left: 200px;
+               top: -37px;
+               line-height: 40px;
+               width: 95px;
+               height: 40px;
+               border-radius: 6px;
+               padding: 0 22;
+               font-size: 16px;
+               color: #555;
+               outline: none;
+               overflow: hidden;
+            
+              }
+       .option option{
+                     font-size: 20px;
+                }  
+       .student{
+                margin-left: 20px;
+                color: white;
+                font-size: 25px;
+              }
+        .radio{
+               display: inline-block;
+               padding-right: 70px;
+               font-size: 25px;
+               margin-left: 25px;
+               margin-top: 15px;
+               color: white;
+             }   
+        .radio input{
+                     width: 20px;
+                     height: 20px;
+                     border-radius: 20px;
+                     cursor: pointer;
+                     outline: none;
+                } 
+        button{
+               background-color: #3BAF9F;
+               display: block;
+               margin: 20px 0px 0px 20px;
+               text-align: center;
+               border-radius: 12px;
+               border: 2px solid #366473;
+               padding: 14px 110px;
+               outline: none;
+               color: white;
+               cursor: pointer;
+               transition: 0.25px;
+              }  
+        button:hover{
+                     background-color: #5390f5;
+        }            
+
+                   

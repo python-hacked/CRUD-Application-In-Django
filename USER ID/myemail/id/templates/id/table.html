@@ -1,0 +1,362 @@
+{% load static %}
+{%load bootstrap3%}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Font Awesome Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="{% static 'style.css' %}" rel="stylesheet"/>
+ 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+</head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:hover {background-color: #ddd;}
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+/* Set a style for all buttons */
+button {
+  background-color:grey;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  
+  opacity: 0.9;
+}
+button:hover {
+  opacity:1;
+}
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+}
+/* Add padding and center-align text to the container */
+.container {
+  padding: 10px;
+  text-align: center;
+  background-color:white;
+  width:200px;
+  height:200px;
+ 
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 50px;
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  width:200px;
+  height:200px;  /* Could be more or less, depending on screen size */
+  float: right;
+}
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Modal Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<h1>Students Data</h1>
+<table id="customers">
+  <tr>
+  <th>First Name</th>
+  <th>Last Name</th>
+    <th>Company</th>
+    <th>Email-id</th>
+    <th>Phone no.</th>
+     <th>Action</th>
+  </tr>
+  {% if persons %}
+  <tbody>
+ {% for person in persons%}
+  <tr>
+
+  <td>{{person.first_name}}</td>
+  <td>{{person.last_name}}</td>
+  <td>{{person.Company_name}}</td>
+  <td>{{person.Email_name}}</td>
+  <td>{{person.Phone_number}}</td>
+  <td><div>
+    <button onclick="document.getElementById('id01').style.display='block';document.getElementById('del_id').value='{{person.id}}'">Delete</button>
+  
+    <a href="/update_view/{{person.id}}/" class="btn btn-primary">Edit</a>
+    </div>
+    </td>
+  
+  
+  </tr>
+   {% endfor %}
+</tbody>
+{%else%}
+<p>No data available</p>
+{%endif%}
+  
+  </tr>
+ 
+  
+</table>
+
+
+  <div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none';" class="close" title="Close Modal">×</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1>Delete Account</h1>
+      <p>Are you sure you want to delete account?</p>
+    
+      <div class="clearfix">
+      <input type="hidden" id="del_id">
+
+   {% comment %} <div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none';" class="close" title="Close Modal">×</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1>Update Account</h1> {% endcomment %}
+      {% comment %} <p>Are you sure you want to delete account?</p> {% endcomment %}
+      {% csrf_token %}
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">NO</button>
+        <button type="button"  onclick="deleteUser();document.getElementById('id01').style.display='none'" class="deletebtn">YES</button>
+      </div>
+     </div>
+   </form>
+</div>
+
+
+
+<!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+<script>
+
+function deleteUser(){
+
+  let uid = document.getElementById('del_id').value
+   let  token = document.getElementsByName('csrfmiddlewaretoken')[0].value
+   let cookie = document.cookie
+   let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
+
+   // token = $('input[name=csrfmiddlewaretoken]').val()
+ user = { 
+            "uid":uid,
+            }
+
+
+        // Options to be given as parameter 
+        // in fetch for making requests
+        // other then GET
+        let options = {
+            method: 'POST',
+             headers: {
+                'Content-Type': 
+                    'application/json;charset=utf-8',
+                     'X-CSRFToken': csrfToken
+            }, 
+            body: JSON.stringify(parseInt(uid))
+        }
+  
+        // Fake api for making post requests
+        let fetchRes = fetch(
+                "/delete_user/", options);
+        fetchRes.then(res =>
+            res.json()).then(d => {
+                console.log(d)
+                document.location.reload()
+            })
+}
+
+
+function UpdateUser(){
+
+  let uid = document.getElementById('edi_id').value
+   let  token = document.getElementsByName('csrfmiddlewaretoken')[0].value
+   let cookie = document.cookie
+let csrfToken = cookie.substring(cookie.indexOf('=') + 1)
+
+   // token = $('input[name=csrfmiddlewaretoken]').val()
+ user = { 
+            "uid":uid,            
+           
+            
+        }
+         let options = {
+            method: 'POST',
+             headers: {
+                'Content-Type': 
+                    'application/json;charset=utf-8',
+                     'X-CSRFToken': csrfToken
+            }, 
+            body: JSON.stringify(parseInt(uid))
+        }
+  
+        // Fake api for making post requests
+        let fetchRes = fetch(
+                "/update_user/", options);
+        fetchRes.then(res =>
+            res.json()).then(d => {
+                console.log(d)
+                document.location.reload()
+            })
+
+
+
+}         
+</script>
+</body>
+</html>
+  
+  
+   
