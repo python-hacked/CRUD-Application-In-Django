@@ -10,11 +10,11 @@ from django.contrib import messages
 # API
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated   
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.contrib.auth.models import User
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer,ChangePasswordSerializer
+from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
 
 # LOGIN APIwelcome
 from django.contrib.auth import login
@@ -38,7 +38,8 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created! You are now able to log in')
+            messages.success(
+                request, f'Your account has been created! You are now able to log in')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -97,6 +98,8 @@ def successful(request):
     return render(request, 'id/welcome.html', context={})
 
 # THIS IS ONLY FOR STARTING Response FOR ALL PAGES
+
+
 def home(request):
     return ("this is my first page.")
 
@@ -113,6 +116,8 @@ def dataon(request):
     return ("this is my first page.")
 
 # THIS IS ALL DATA VIEW
+
+
 class AboutUs(View):
     def get(self, request, *args, **kwargs):
         return render(request, "home.html")
@@ -237,11 +242,12 @@ class RegisterAPI(generics.GenericAPIView):
             "users": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1]
         })
-        
+
 
 # LOGIN API
 class LoginAPI(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
+
     def post(self, request, format=None):
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
