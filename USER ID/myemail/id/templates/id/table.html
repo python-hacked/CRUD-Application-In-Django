@@ -207,8 +207,9 @@ hr {
   <td>{{person.Email_name}}</td>
   <td>{{person.Phone_number}}</td>
   <td><div>
-    <button onclick="document.getElementById('id01').style.display='block';document.getElementById('del_id').value='{{person.id}}'">Delete</button>
-  
+    {% comment %} <button onclick="document.getElementById('id01').style.display='block';document.getElementById('del_id').value='{{person.id}}'">Delete</button> {% endcomment %}
+    <a href="/delete/{{person.id}}/" class="btn btn-primary">Delete</a>
+    
     <a href="/update_view/{{person.id}}/" class="btn btn-primary">Edit</a>
     </div>
     </td>

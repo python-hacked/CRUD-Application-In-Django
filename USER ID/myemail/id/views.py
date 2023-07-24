@@ -1,6 +1,9 @@
 import json
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from django.views.generic.base import TemplateView, View
 from django.contrib.auth.hashers import check_password, make_password
 from django.shortcuts import redirect
@@ -14,7 +17,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.contrib.auth.models import User
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
+from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer,PersonSerializer
 
 # LOGIN APIwelcome
 from django.contrib.auth import login
@@ -202,17 +205,21 @@ def data(request):
 
 
 # create delete button
-def delete_user(request):
-    if request.method == "POST":
-        data = request.body.decode("utf-8")
-        uid = json.loads(data)
-        if Person.objects.filter(id=uid).exists():
-            Person.objects.filter(id=uid).update(is_active=False)
-            return JsonResponse({"staus": True, "message": "User has been deleted"})
-        else:
-            return JsonResponse({"staus": False, "message": "User not exists."})
-    else:
-        return JsonResponse({"staus": False, "message": "Method not allowed."})
+def delete_user(request,pk):
+    Person.objects.get(id=pk).delete()
+    return redirect('/data/')
+
+# def delete_user(request):
+#     if request.method == "POST":
+#         data = request.body.decode("utf-8")
+#         uid = json.loads(data)
+#         if Person.objects.filter(id=uid).exists():
+#             Person.objects.filter(id=uid).update(is_active=False)
+#             return JsonResponse({"staus": True, "message": "User has been deleted"})
+#         else:
+#             return JsonResponse({"staus": False, "message": "User not exists."})
+#     else:
+#         return JsonResponse({"staus": False, "message": "Method not allowed."})
 
 
 # create Edit button
@@ -246,6 +253,46 @@ def update_form_data(request):
         )
         return redirect("/data/")
         # redirect to table form    AND OF THE CLIENT TABLE
+
+# Create api for using api_view
+@api_view(['GET', 'POST'])
+def person_list(request):
+    if request.method == 'GET':
+        persons = Person.objects.all()
+        serializer = PersonSerializer(persons, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = PersonSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def person_detail(request, pk):
+    try:
+        person = Person.objects.get(pk=pk)
+    except Person.DoesNotExist:
+        return Response({'error': 'Person not found'}, status=404)
+
+    if request.method == 'GET':
+        serializer = PersonSerializer(person)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = PersonSerializer(person, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        person.delete()
+        return Response({'message': 'Person deleted successfully'}, status=204)
+
+
 
 
 # THIS IS API SYSTEM
