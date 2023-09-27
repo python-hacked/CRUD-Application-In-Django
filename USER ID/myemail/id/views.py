@@ -179,7 +179,8 @@ def form_data(request):
                 "access": str(refresh.access_token),
             }
             # token = jwt_encode_handler(payload)
-            return redirect("/login/")
+            return JsonResponse({"message": "Registered Successfully!!", "token": token})
+            # return redirect("/login/")
 
 
 # create login form
@@ -194,7 +195,9 @@ def Login_form(request):
                 "refresh": str(refresh),
                 "access": str(refresh.access_token),
             }
-            return redirect("/welcome/")
+            
+            # Return the token in the response as JSON
+            return JsonResponse({"message": "Login Successful!", "token": token})
         else:
             messages.error(request, "Username or password is incorrect")
             return redirect("login")

@@ -1,8 +1,8 @@
 from django.urls import path
-from django.contrib import admin
-from knox import views as knox_views
+# from django.contrib import admin
+# from knox import views as knox_views
 from . import views
-from .views import ChangePasswordView
+# from .views import ChangePasswordView
 
 
 urlpatterns = [
