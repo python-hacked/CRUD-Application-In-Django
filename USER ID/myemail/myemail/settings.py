@@ -52,6 +52,15 @@ REST_FRAMEWORK = {
     ]
 }
 
+import datetime
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': 'SECRET_KEY',  # Replace with your secret key
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # Token expiration time
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -74,6 +83,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+
+
 
 # WSGI_APPLICATION = 'myemail.wsgi.application'
 # mysql database
